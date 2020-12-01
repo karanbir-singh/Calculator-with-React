@@ -4,7 +4,7 @@ import { AllButtons } from "./Components/Buttons";
 import { Display } from "./Components/Display";
 import "./styles.css";
 
-const rootElement = document.getElementById("app");
+const rootElement = document.getElementById("root");
 
 ReactDOM.render(
   <React.StrictMode>
