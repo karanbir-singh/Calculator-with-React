@@ -30222,17 +30222,19 @@ function AngleButton(props) {
       value = _useState2[0],
       setValue = _useState2[1];
 
+  var _useState3 = (0, _react.useState)("img/" + props.imageUrl),
+      _useState4 = _slicedToArray(_useState3, 2),
+      imgUrl = _useState4[0],
+      setImageUrl = _useState4[1];
+
   return /*#__PURE__*/_react.default.createElement("input", {
     className: "angleButton",
     type: "image",
-    src: "img/" + props.imageUrl,
+    src: imgUrl,
     onClick: function onClick() {
-      value === "DEG" ? setValue("RAD") : setValue("DEG");
-      changeImage();
+      value === "DEG" ? (setValue("RAD"), setImageUrl("img/extra_/rad.png")) : (setValue("DEG"), setImageUrl("img/extra_/deg.png"));
     }
   });
-
-  function changeImage() {}
 } // Extra buttons opener
 
 
@@ -30426,7 +30428,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58266" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60426" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

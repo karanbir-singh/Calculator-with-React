@@ -96,7 +96,7 @@ function operation(operator, x, y) {
         case "^": return Math.pow(y, x);
         case "√": return Math.sqrt(x);
         case "log": return Math.log10(x);
-        
+
         // Trigonometric functions
         case "sin": if (angle === "RAD") return Math.sin(x);
         else return Math.sin(x * Math.PI / 180);
@@ -305,17 +305,13 @@ function SingleButton(props) {
 //Angle type changer
 function AngleButton(props) {
     const [value, setValue] = useState("DEG");
+    const [imgUrl, setImageUrl] = useState("img/"+props.imageUrl);
     return (
-        <input className="angleButton" type="image" src={"img/" + props.imageUrl}
+        <input className="angleButton" type="image" src={imgUrl}
             onClick={() => {
-                value === "DEG" ? setValue("RAD") : setValue("DEG");
-                changeImage();
+                value === "DEG" ? (setValue("RAD"), setImageUrl("img/extra_/rad.png")) : (setValue("DEG"), setImageUrl("img/extra_/deg.png"));
             }}></input>
     );
-
-    function changeImage() {
-        
-    }
 }
 
 // Extra buttons opener
