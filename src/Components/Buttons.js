@@ -349,7 +349,7 @@ function SpecialButtons() {
 // Extra buttons
 function ExtraButtons(){
     return(
-        <div className="extraButtons">
+        <div className="extraButtons" style={{backgroundImage: 'url(img/extra_/extraB.png)'}}>
             <SingleButton value="^" imageUrl="operators/pow.png" />
             <SingleButton value="√" imageUrl="operators/sqrt.png" />
 
@@ -404,6 +404,7 @@ export function AllButtons(props) {
         <div className="allButtons">
             <SpecialButtons />
             <MainButtons />
+            <ExtraButtons />
         </div>
     );
 }

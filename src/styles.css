@@ -6,8 +6,7 @@ html, body{
 .singleButton{
   display: inline;
   margin: 4px;
-  margin-bottom: 3px;
-  margin-top: 0px;
+  margin-bottom: 0px;
   outline: none;
 }
 
@@ -73,7 +72,11 @@ input:active:not(#input){
 }
 
 .extraButtons {
-  visibility: hidden;
+  position: absolute;
+  max-width: 192px;
+  left: 493px;
+  top: 173px;
+  border-radius: 15px;
 }
 
 
