@@ -329,6 +329,7 @@ function ExtraOpener(props) {
 
     function exhibitExtraButtons() {
         !state.active ? setState({active: true, imageUrl: "img/extra_/left_arrow.png"}) : setState({active: false, imageUrl: "img/extra_/right_arrow.png"});
+        
         event.target.blur();
     }
 }
@@ -341,6 +342,25 @@ function SpecialButtons() {
         <div className="specialButtons">
             <AngleButton />
             <ExtraOpener imageUrl="extra_/right_arrow.png" />
+        </div>
+    );
+}
+
+// Extra buttons
+function ExtraButtons(){
+    return(
+        <div className="extraButtons">
+            <SingleButton value="^" imageUrl="operators/pow.png" />
+            <SingleButton value="√" imageUrl="operators/sqrt.png" />
+
+            <SingleButton value="%" imageUrl="operators/mod.png" />
+            <SingleButton value="π" imageUrl="numbers/pi.png" />
+            
+            <SingleButton value="sin" imageUrl="operators/sin.png" />
+            <SingleButton value="cos" imageUrl="operators/cos.png" />
+            
+            <SingleButton value="tan" imageUrl="operators/tan.png" />
+            <SingleButton value="log" imageUrl="operators/log.png" />
         </div>
     );
 }

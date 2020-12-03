@@ -6,7 +6,8 @@ html, body{
 .singleButton{
   display: inline;
   margin: 4px;
-  margin-bottom: 1px;
+  margin-bottom: 3px;
+  margin-top: 0px;
   outline: none;
 }
 
@@ -69,6 +70,10 @@ input:active:not(#input){
 
 .specialButtons{
   margin-top: 30px;
+}
+
+.extraButtons {
+  visibility: hidden;
 }
 
 
