@@ -2,3 +2,4 @@
 .cache
 /dist
 !dist/img
+!packege-lock.json
