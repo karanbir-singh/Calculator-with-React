@@ -304,24 +304,31 @@ function SingleButton(props) {
 
 //Angle type changer
 function AngleButton(props) {
-    const [value, setValue] = useState("DEG");
-    const [imgUrl, setImageUrl] = useState("img/"+props.imageUrl);
+    const [state, setState] = useState({
+        type: "DEG",
+        imageUrl: "img/extra_/deg.png"
+    });
     return (
-        <input className="angleButton" type="image" src={imgUrl}
+        <input className="angleButton" type="image" src={state.imageUrl}
             onClick={() => {
-                value === "DEG" ? (setValue("RAD"), setImageUrl("img/extra_/rad.png")) : (setValue("DEG"), setImageUrl("img/extra_/deg.png"));
+                state.type === "DEG" ? setState({type: "RAD", imageUrl: "img/extra_/rad.png"}) : setState({type: "DEG", imageUrl: "img/extra_/deg.png"})
             }}></input>
     );
 }
 
 // Extra buttons opener
 function ExtraOpener(props) {
+    const [state, setState] = useState({
+        active: false,
+        imageUrl: "img/extra_/right_arrow.png"
+    });
     return (
-        <input className="extraOpener" type="image" src={"img/" + props.imageUrl}
-            onClick={() => handleClickEvent()}></input>
+        <input className="extraOpener" type="image" src={state.imageUrl}
+            onClick={() => exhibitExtraButtons()}></input>
     );
 
-    function handleClickEvent() {
+    function exhibitExtraButtons() {
+        !state.active ? setState({active: true, imageUrl: "img/extra_/left_arrow.png"}) : setState({active: false, imageUrl: "img/extra_/right_arrow.png"});
         event.target.blur();
     }
 }
@@ -332,7 +339,7 @@ function ExtraOpener(props) {
 function SpecialButtons() {
     return (
         <div className="specialButtons">
-            <AngleButton imageUrl="extra_/deg.png" />
+            <AngleButton />
             <ExtraOpener imageUrl="extra_/right_arrow.png" />
         </div>
     );
