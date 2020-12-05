@@ -311,7 +311,9 @@ function AngleButton(props) {
     return (
         <input className="angleButton" type="image" src={state.imageUrl}
             onClick={() => {
-                state.type === "DEG" ? setState({type: "RAD", imageUrl: "img/extra_/rad.png"}) : setState({type: "DEG", imageUrl: "img/extra_/deg.png"})
+                state.type === "DEG" ?
+                    setState({ type: "RAD", imageUrl: "img/extra_/rad.png" }) :
+                    setState({ type: "DEG", imageUrl: "img/extra_/deg.png" });
             }}></input>
     );
 }
@@ -328,8 +330,9 @@ function ExtraOpener(props) {
     );
 
     function exhibitExtraButtons() {
-        !state.active ? setState({active: true, imageUrl: "img/extra_/left_arrow.png"}) : setState({active: false, imageUrl: "img/extra_/right_arrow.png"});
-        
+        !state.active ?
+            (setState({ active: true, imageUrl: "img/extra_/left_arrow.png" }), document.getElementById("extraButtons").style.visibility = "visible") :
+            (setState({ active: false, imageUrl: "img/extra_/right_arrow.png" }), document.getElementById("extraButtons").style.visibility = "hidden");
         event.target.blur();
     }
 }
@@ -347,18 +350,20 @@ function SpecialButtons() {
 }
 
 // Extra buttons
-function ExtraButtons(){
-    return(
-        <div className="extraButtons" style={{backgroundImage: 'url(img/extra_/extraB.png)'}}>
+function ExtraButtons() {
+    return (
+        <div id="extraButtons" className="extraButtons"
+            style={{ backgroundImage: 'url(img/extra_/extraB.png)'}}>
+
             <SingleButton value="^" imageUrl="operators/pow.png" />
             <SingleButton value="√" imageUrl="operators/sqrt.png" />
 
             <SingleButton value="%" imageUrl="operators/mod.png" />
             <SingleButton value="π" imageUrl="numbers/pi.png" />
-            
+
             <SingleButton value="sin" imageUrl="operators/sin.png" />
             <SingleButton value="cos" imageUrl="operators/cos.png" />
-            
+
             <SingleButton value="tan" imageUrl="operators/tan.png" />
             <SingleButton value="log" imageUrl="operators/log.png" />
         </div>
