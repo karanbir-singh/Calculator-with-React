@@ -31,6 +31,7 @@ input:active:not(#input){
 }
 
 .input{
+  font-family: "digital-font-1";
   border: none;
   background-color: transparent;
   font-size: 40px;
@@ -44,6 +45,7 @@ input:active:not(#input){
 }
 
 .output{
+  font-family: "digital-font-1";
   font-size: 40px;
   margin: 0px;
   text-align: right;
@@ -80,5 +82,9 @@ input:active:not(#input){
   visibility: hidden;
 }
 
-
-
+@font-face {
+  font-family: "digital-font-1";
+  src: url('assets/font/digital_1/digital-7.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -353,7 +353,7 @@ function SpecialButtons() {
 function ExtraButtons() {
     return (
         <div id="extraButtons" className="extraButtons"
-            style={{ backgroundImage: 'url(img/extra_/extraB.png)'}}>
+            style={{ backgroundImage: 'url(img/extra_/extraB.png)' }}>
 
             <SingleButton value="^" imageUrl="operators/pow.png" />
             <SingleButton value="√" imageUrl="operators/sqrt.png" />
