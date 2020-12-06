@@ -21,6 +21,7 @@ input:active:not(#input){
 
 .mainContainer{
   background-repeat: no-repeat;
+  background-image: url('assets/Calculator.png');
   width: 441px;
   height: 693px;
   padding-top: 50px;

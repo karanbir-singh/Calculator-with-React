@@ -8,7 +8,7 @@ const rootElement = document.getElementById("root");
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="mainContainer" style={{ backgroundImage: 'url(img/Calculator.png)'}} >
+    <div className="mainContainer"  >
       <Display />
       <AllButtons />
     </div>

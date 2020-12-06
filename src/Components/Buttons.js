@@ -282,7 +282,7 @@ function SingleButton(props) {
         height = props.height;
     }
     return (
-        <input className="singleButton" type="image" src={'img/' + props.imageUrl} width={width} height={height}
+        <input className="singleButton" type="image" src={"img/" + props.imageUrl} width={width} height={height}
             onClick={() => handleClickEvent()} onDoubleClick={() => { if (props.value === 'c') document.getElementById('input').value = "" }}></input>
     );
 
