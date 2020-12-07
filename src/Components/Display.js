@@ -1,3 +1,5 @@
+// Copyright © 2020 Singh Karanbir. All rights riserved.
+
 import React, { useState } from "react";
 import "../styles.css";
 

@@ -1,3 +1,5 @@
+// Copyright © 2020 Singh Karanbir. All rights riserved.
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { AllButtons } from "./Components/Buttons";

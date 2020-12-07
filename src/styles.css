@@ -1,25 +1,25 @@
-html, body{
+html, body {
   margin-left: 40px;
   margin-top: 5px;
 }
 
-.singleButton{
+.singleButton {
   display: inline;
   margin: 4px;
   margin-bottom: 0px;
   outline: none;
 }
 
-input:hover:not(#input){
+input:hover:not(#input) {
   -webkit-filter: invert(1);
   filter: invert(1);
 }
 
-input:active:not(#input){
+input:active:not(#input) {
   transform: scale(0.92);
 }
 
-.mainContainer{
+.mainContainer {
   background-repeat: no-repeat;
   background-image: url('assets/Calculator.png');
   width: 441px;
@@ -27,11 +27,11 @@ input:active:not(#input){
   padding-top: 50px;
 }
 
-.mainButtons{
+.mainButtons {
   text-align: center;
 }
 
-.input{
+.input {
   font-family: "digital-font-1";
   border: none;
   background-color: transparent;
@@ -41,11 +41,11 @@ input:active:not(#input){
   padding-left: 30px;
 }
 
-.input:focus{
+.input:focus {
   outline: none;
 }
 
-.output{
+.output {
   font-family: "digital-font-1";
   font-size: 40px;
   margin: 0px;
@@ -70,7 +70,7 @@ input:active:not(#input){
   margin-left: 300px;
 }
 
-.specialButtons{
+.specialButtons {
   margin-top: 30px;
 }
 
@@ -81,6 +81,10 @@ input:active:not(#input){
   top: 173px;
   border-radius: 15px;
   visibility: hidden;
+}
+
+.lastButtons {
+  margin-left: 28px;
 }
 
 @font-face {

@@ -1,3 +1,5 @@
+// Copyright © 2020 Singh Karanbir. All rights riserved.
+
 import React, { useState } from "react";
 import "../styles.css";
 
@@ -295,6 +297,14 @@ function SingleButton(props) {
             document.getElementById("input").value = document.getElementById("input").value.substr(0, document.getElementById("input").value.length - 1);
             return;
         }
+        if (props.value === '?') {
+            alert("- You can modify the expression directly by clicking on the display where there is the expression\n- If the 'C' button is double-clicked, it will clean up the display\n- If you want to use the trigonometric functions or square root, after the value insert a right parenthesis i.e. ')'\n- The '%' rappresents the MOD function ( 10 mod 3 = 1 )\n- The log() function returns the base-10 logarithm of the inserted value.");
+            return;
+        }
+        if (props.value === 'i') {
+            alert("Created by Singh Karanbir");
+            return;
+        }
         document.getElementById("input").value += props.value;
         event.target.blur();
     }
@@ -335,6 +345,22 @@ function ExtraOpener(props) {
             (setState({ active: false, imageUrl: "img/extra_/right_arrow.png" }), document.getElementById("extraButtons").style.visibility = "hidden");
         event.target.blur();
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Rules button
+function RulesButton() {
+    return (
+        <SingleButton value="?" imageUrl="extra_/rules.png" width="15px" height="15px"/>
+    );
+}
+
+// Info button
+function InfoButton() {
+    return (
+        <SingleButton value="i" imageUrl="extra_/info.png" width="15px" height="15px"/>
+    );
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
@@ -401,6 +427,15 @@ function MainButtons() {
     );
 }
 
+function LastButtons() {
+    return (
+        <div className="lastButtons">
+            <InfoButton />
+            <RulesButton />
+        </div>
+    );
+}
+
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
 // All buttons
@@ -410,6 +445,7 @@ export function AllButtons(props) {
             <SpecialButtons />
             <MainButtons />
             <ExtraButtons />
+            <LastButtons />
         </div>
     );
 }
