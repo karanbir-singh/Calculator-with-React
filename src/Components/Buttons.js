@@ -1,8 +1,9 @@
 // Copyright © 2020 Singh Karanbir. All rights riserved.
 
-import React, { useState } from "react";
+import React, { useState, useReducer, useContext, createContext } from "react";
 import "../styles.css";
-
+import assets from "../assets/**/*.png";
+console.log(assets);
 const openedB = "(";
 const closedB = ")";
 
@@ -284,7 +285,7 @@ function SingleButton(props) {
         height = props.height;
     }
     return (
-        <input className="singleButton" type="image" src={"img/" + props.imageUrl} width={width} height={height}
+        <input className="singleButton" type="image" src={props.imageUrl} width={width} height={height}
             onClick={() => handleClickEvent()} onDoubleClick={() => { if (props.value === 'c') document.getElementById('input').value = "" }}></input>
     );
 
@@ -316,14 +317,14 @@ function SingleButton(props) {
 function AngleButton(props) {
     const [state, setState] = useState({
         type: "DEG",
-        imageUrl: "img/extra_/deg.png"
+        imageUrl: assets.img.extra_.deg
     });
     return (
         <input className="angleButton" type="image" src={state.imageUrl}
             onClick={() => {
                 state.type === "DEG" ?
-                    setState({ type: "RAD", imageUrl: "img/extra_/rad.png" }) :
-                    setState({ type: "DEG", imageUrl: "img/extra_/deg.png" });
+                    setState({ type: "RAD", imageUrl: assets.img.extra_.rad }) :
+                    setState({ type: "DEG", imageUrl: assets.img.extra_.deg });
             }}></input>
     );
 }
@@ -332,7 +333,7 @@ function AngleButton(props) {
 function ExtraOpener(props) {
     const [state, setState] = useState({
         active: false,
-        imageUrl: "img/extra_/right_arrow.png"
+        imageUrl: assets.img.extra_.right_arrow
     });
     return (
         <input className="extraOpener" type="image" src={state.imageUrl}
@@ -341,8 +342,8 @@ function ExtraOpener(props) {
 
     function exhibitExtraButtons() {
         !state.active ?
-            (setState({ active: true, imageUrl: "img/extra_/left_arrow.png" }), document.getElementById("extraButtons").style.visibility = "visible") :
-            (setState({ active: false, imageUrl: "img/extra_/right_arrow.png" }), document.getElementById("extraButtons").style.visibility = "hidden");
+            (setState({ active: true, imageUrl: assets.img.extra_.left_arrow }), document.getElementById("extraButtons").style.visibility = "visible") :
+            (setState({ active: false, imageUrl: assets.img.extra_.right_arrow }), document.getElementById("extraButtons").style.visibility = "hidden");
         event.target.blur();
     }
 }
@@ -352,14 +353,14 @@ function ExtraOpener(props) {
 // Rules button
 function RulesButton() {
     return (
-        <SingleButton value="?" imageUrl="extra_/rules.png" width="15px" height="15px"/>
+        <SingleButton value="?" imageUrl={assets.img.extra_.rules} width="15px" height="15px" />
     );
 }
 
 // Info button
 function InfoButton() {
     return (
-        <SingleButton value="i" imageUrl="extra_/info.png" width="15px" height="15px"/>
+        <SingleButton value="i" imageUrl={assets.img.extra_.info} width="15px" height="15px" />
     );
 }
 
@@ -370,7 +371,7 @@ function SpecialButtons() {
     return (
         <div className="specialButtons">
             <AngleButton />
-            <ExtraOpener imageUrl="extra_/right_arrow.png" />
+            <ExtraOpener imageUrl={assets.img.extra_right_arrow} />
         </div>
     );
 }
@@ -379,19 +380,19 @@ function SpecialButtons() {
 function ExtraButtons() {
     return (
         <div id="extraButtons" className="extraButtons"
-            style={{ backgroundImage: 'url(img/extra_/extraB.png)' }}>
+            style={{ backgroundImage: 'url(' + assets.img.extra_.extraB + ')' }}>
 
-            <SingleButton value="^" imageUrl="operators/pow.png" />
-            <SingleButton value="√" imageUrl="operators/sqrt.png" />
+            <SingleButton value="^" imageUrl={assets.img.operators.pow} />
+            <SingleButton value="√" imageUrl={assets.img.operators.sqrt} />
 
-            <SingleButton value="%" imageUrl="operators/mod.png" />
-            <SingleButton value="π" imageUrl="numbers/pi.png" />
+            <SingleButton value="%" imageUrl={assets.img.operators.mod} />
+            <SingleButton value="π" imageUrl={assets.img.numbers.pi} />
 
-            <SingleButton value="sin" imageUrl="operators/sin.png" />
-            <SingleButton value="cos" imageUrl="operators/cos.png" />
+            <SingleButton value="sin" imageUrl={assets.img.operators.sin} />
+            <SingleButton value="cos" imageUrl={assets.img.operators.cos} />
 
-            <SingleButton value="tan" imageUrl="operators/tan.png" />
-            <SingleButton value="log" imageUrl="operators/log.png" />
+            <SingleButton value="tan" imageUrl={assets.img.operators.tan} />
+            <SingleButton value="log" imageUrl={assets.img.operators.log} />
         </div>
     );
 }
@@ -400,29 +401,29 @@ function ExtraButtons() {
 function MainButtons() {
     return (
         <div className="mainButtons">
-            <SingleButton value="(" imageUrl="extra_/openB.png" />
-            <SingleButton value=")" imageUrl="extra_/closeB.png" />
-            <SingleButton value="c" imageUrl="extra_/clean.png" />
-            <SingleButton value="+" imageUrl="operators/sum.png" />
+            <SingleButton value="(" imageUrl={assets.img.extra_.openB} />
+            <SingleButton value=")" imageUrl={assets.img.extra_.closeB} />
+            <SingleButton value="c" imageUrl={assets.img.extra_.clean} />
+            <SingleButton value="+" imageUrl={assets.img.operators.sum} />
 
-            <SingleButton value="7" imageUrl="numbers/7.png" />
-            <SingleButton value="8" imageUrl="numbers/8.png" />
-            <SingleButton value="9" imageUrl="numbers/9.png" />
-            <SingleButton value="-" imageUrl="operators/substract.png" />
+            <SingleButton value="7" imageUrl={assets.img.numbers['7']} />
+            <SingleButton value="8" imageUrl={assets.img.numbers['8']} />
+            <SingleButton value="9" imageUrl={assets.img.numbers['9']} />
+            <SingleButton value="-" imageUrl={assets.img.operators.substract} />
 
-            <SingleButton value="4" imageUrl="numbers/4.png" />
-            <SingleButton value="5" imageUrl="numbers/5.png" />
-            <SingleButton value="6" imageUrl="numbers/6.png" />
-            <SingleButton value="*" imageUrl="operators/multiply.png" />
+            <SingleButton value="4" imageUrl={assets.img.numbers['4']} />
+            <SingleButton value="5" imageUrl={assets.img.numbers['5']} />
+            <SingleButton value="6" imageUrl={assets.img.numbers['6']} />
+            <SingleButton value="*" imageUrl={assets.img.operators.multiply} />
 
-            <SingleButton value="1" imageUrl="numbers/1.png" />
-            <SingleButton value="2" imageUrl="numbers/2.png" />
-            <SingleButton value="3" imageUrl="numbers/3.png" />
-            <SingleButton value="/" imageUrl="operators/divide.png" />
+            <SingleButton value="1" imageUrl={assets.img.numbers['1']} />
+            <SingleButton value="2" imageUrl={assets.img.numbers['2']} />
+            <SingleButton value="3" imageUrl={assets.img.numbers['3']} />
+            <SingleButton value="/" imageUrl={assets.img.operators.divide} />
 
-            <SingleButton value="0" imageUrl="numbers/0.png" />
-            <SingleButton value="." imageUrl="extra_/dot.png" />
-            <SingleButton value="=" imageUrl="extra_/ris.png" width="186px" />
+            <SingleButton value="0" imageUrl={assets.img.numbers['0']} />
+            <SingleButton value="." imageUrl={assets.img.extra_.dot} />
+            <SingleButton value="=" imageUrl={assets.img.extra_.ris} width="186px" />
         </div>
     );
 }

@@ -1,7 +1,8 @@
 // Copyright © 2020 Singh Karanbir. All rights riserved.
 
-import React, { useState } from "react";
+import React, { useState ,useReducer, useContext, createContext } from "react";
 import "../styles.css";
+import images from "../assets/**/*.png";
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
 

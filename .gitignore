@@ -1,5 +1,4 @@
 /node_modules
 .cache
 /dist
-!dist/img
 package-lock.json
