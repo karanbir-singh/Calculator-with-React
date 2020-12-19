@@ -3,7 +3,7 @@
 import React, { useState, useReducer, useContext, createContext } from "react";
 import "../styles.css";
 import assets from "../assets/**/*.png";
-console.log(assets);
+
 const openedB = "(";
 const closedB = ")";
 
@@ -371,7 +371,7 @@ function SpecialButtons() {
     return (
         <div className="specialButtons">
             <AngleButton />
-            <ExtraOpener imageUrl={assets.img.extra_right_arrow} />
+            <ExtraOpener imageUrl={assets.img.extra_.right_arrow} />
         </div>
     );
 }
