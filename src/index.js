@@ -14,6 +14,8 @@ function myReducer(state, action) {
   let newState = { ...state };
   switch (action.type) {
     case "Angle": newState.angleType = action.payload;
+      break;
+    case "Opener": newState.extraOpenerActive = action.payload;
   }
   return newState;
 }

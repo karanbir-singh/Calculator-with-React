@@ -1,7 +1,6 @@
 html, body {
-  padding-top: 5px;
-  max-width: 420px;
-  margin: auto;
+  padding-top: 2px;
+  padding-left: 10px;
 }
 
 .singleButton {
@@ -78,8 +77,8 @@ input:active:not(#input) {
 .extraButtons {
   position: absolute;
   max-width: 192px;
-  left: 963px;
-  top: 173px;
+  left: 440px;
+  top: 175px;
   border-radius: 15px;
   visibility: hidden;
 }
