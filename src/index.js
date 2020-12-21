@@ -1,20 +1,44 @@
 // Copyright © 2020 Singh Karanbir. All rights riserved.
 
-import React, { useState ,useReducer, useContext, createContext }from "react";
+import React, { useState, useReducer, useContext, createContext } from "react";
 import ReactDOM from "react-dom";
 import { AllButtons } from "./Components/Buttons";
 import { Display } from "./Components/Display";
 import "./styles.css";
 
 const rootElement = document.getElementById("root");
-const AppContext = createContext(null);
+
+export const AppContext = createContext(null);
+
+function myReducer(state, action) {
+  let newState = { ...state };
+  switch (action.type) {
+    case "Angle": newState.angleType = action.payload;
+  }
+  return newState;
+}
+
+function App() {
+  const [state, dispatch] = useReducer(myReducer, {
+    input: "",
+
+    angleType: "DEG",
+    extraOpenerActive: false
+  });
+
+  return (
+    <div className="mainContainer">
+      <AppContext.Provider value={{ state, dispatch }}>
+        <Display />
+        <AllButtons />
+      </AppContext.Provider>
+    </div>
+  );
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="mainContainer">
-      <Display />
-      <AllButtons />
-    </div>
+    <App />
   </React.StrictMode>,
   rootElement
 );

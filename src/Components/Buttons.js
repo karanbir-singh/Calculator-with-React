@@ -3,6 +3,7 @@
 import React, { useState, useReducer, useContext, createContext } from "react";
 import "../styles.css";
 import assets from "../assets/**/*.png";
+import { AppContext } from '../index.js';
 
 const openedB = "(";
 const closedB = ")";
@@ -315,16 +316,15 @@ function SingleButton(props) {
 
 //Angle type changer
 function AngleButton(props) {
-    const [state, setState] = useState({
-        type: "DEG",
-        imageUrl: assets.img.extra_.deg
-    });
+    const [image, changeImage] = useState({img: assets.img.extra_.deg});
+    const { state, dispatch } = useContext(AppContext);
+
     return (
-        <input className="angleButton" type="image" src={state.imageUrl}
+        <input className="angleButton" type="image" src={image.img}
             onClick={() => {
-                state.type === "DEG" ?
-                    setState({ type: "RAD", imageUrl: assets.img.extra_.rad }) :
-                    setState({ type: "DEG", imageUrl: assets.img.extra_.deg });
+                state.angleType === "DEG" ?
+                    (dispatch({ type: "Angle", payload: "RAD"}), changeImage({img: assets.img.extra_.rad})) :
+                    (dispatch({ type: "Angle", payload: "DEG"}), changeImage({img: assets.img.extra_.deg}));
             }}></input>
     );
 }
@@ -335,6 +335,7 @@ function ExtraOpener(props) {
         active: false,
         imageUrl: assets.img.extra_.right_arrow
     });
+
     return (
         <input className="extraOpener" type="image" src={state.imageUrl}
             onClick={() => exhibitExtraButtons()}></input>

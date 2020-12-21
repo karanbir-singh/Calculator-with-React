@@ -1,7 +1,6 @@
 html, body {
-  /*margin-left: 40px;
-  margin-top: 5px;*/
-  max-width: 500px;
+  padding-top: 5px;
+  max-width: 420px;
   margin: auto;
 }
 
@@ -79,8 +78,8 @@ input:active:not(#input) {
 .extraButtons {
   position: absolute;
   max-width: 192px;
-  left: 925px;
-  top: 163px;
+  left: 963px;
+  top: 173px;
   border-radius: 15px;
   visibility: hidden;
 }
