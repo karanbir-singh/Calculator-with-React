@@ -11,7 +11,7 @@ function Input() {
   const { state, dispatch } = useContext(AppContext);
 
   return (
-    <input id='input' className="input" defaultValue={state.input} disabled></input>
+    <input id='input' className="input" defaultValue={state.input} readOnly></input>
   );
 }
 
