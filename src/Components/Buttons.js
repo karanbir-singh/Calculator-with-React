@@ -1,10 +1,11 @@
 // Copyright © 2020 Singh Karanbir. All rights riserved.
 
-import React, { useState, useReducer, useContext, createContext } from "react";
+import React, { useState, useContext } from "react";
 import "../styles.css";
 import assets from "../assets/**/*.png";
 import { AppContext } from '../index.js';
 
+// Brackets
 const openedB = "(";
 const closedB = ")";
 
@@ -17,6 +18,7 @@ function formatExpr(inExpr) {
         if (inExpr.charAt(i) !== " ")
             tmp += inExpr.charAt(i);
     }
+
     let tmp1 = "";
     for (let i = 0; i < tmp.length; i++) {
         let k = tmp.charAt(i);
@@ -277,6 +279,7 @@ function calculateResult(postfix, angleType) {
 
 // Single button component
 function SingleButton(props) {
+    // Size
     let width = "88px";
     let height = "82px";
     if (props.width !== undefined) {
@@ -288,13 +291,7 @@ function SingleButton(props) {
 
     const { state, dispatch } = useContext(AppContext);
 
-    return (
-        <input className="singleButton" type="image" src={props.img} width={width} height={height}
-            onClick={() => handleClickEvent()}
-            onDoubleClick={() => { if (props.value === 'c') dispatch({ type: "Erase all" }) }}>
-        </input>
-    );
-
+    // On click event
     function handleClickEvent() {
         if (props.value === '=') {
             dispatch({ type: "Calculate", payload: createRPN(state.input, state.angleType) })
@@ -315,15 +312,24 @@ function SingleButton(props) {
         dispatch({ type: "Add val", payload: props.value })
         event.target.blur();
     }
+
+    return (
+        <input className="singleButton" type="image" src={props.img} width={width} height={height}
+            onClick={() => handleClickEvent()}
+            onDoubleClick={() => { if (props.value === 'c') dispatch({ type: "Erase all" }) }}>
+        </input>
+    );
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Angle type changer
 function AngleButton(props) {
+    // Local state
     const [image, changeImage] = useState({
         img: assets.img.extra_.deg
     });
+    
     const { state, dispatch } = useContext(AppContext);
 
     return (
@@ -338,9 +344,11 @@ function AngleButton(props) {
 
 // Extra buttons opener
 function ExtraOpener(props) {
+    // Local state
     const [image, changeImage] = useState({
         img: assets.img.extra_.right_arrow
     });
+
     const { state, dispatch } = useContext(AppContext);
 
     return (
@@ -384,7 +392,7 @@ function SpecialButtons() {
     );
 }
 
-// Extra buttons
+// Extra operators buttons
 function ExtraButtons() {
     return (
         <div id="extraButtons" className="extraButtons"
@@ -435,7 +443,7 @@ function MainButtons() {
         </div>
     );
 }
-
+// Last buttons: Info button and Rules button
 function LastButtons() {
     return (
         <div className="lastButtons">

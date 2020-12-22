@@ -1,15 +1,18 @@
 // Copyright © 2020 Singh Karanbir. All rights riserved.
 
-import React, { useState, useReducer, useContext, createContext } from "react";
+import React, { useReducer, createContext } from "react";
 import ReactDOM from "react-dom";
 import { AllButtons } from "./Components/Buttons";
 import { Display } from "./Components/Display";
 import "./styles.css";
 
+// App's root element
 const rootElement = document.getElementById("root");
 
+// App's contenxt
 export const AppContext = createContext(null);
 
+// App's reducer
 function appReducer(state, action) {
   let newState = { ...state };
   switch (action.type) {
@@ -35,6 +38,7 @@ function appReducer(state, action) {
 }
 
 function App() {
+  // Calculator state
   const [state, dispatch] = useReducer(appReducer, {
     input: "",
     output: "",
