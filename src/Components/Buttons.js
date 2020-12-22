@@ -90,7 +90,7 @@ function isOperator(val) {
 }
 
 // Executes single operation
-function operation(operator, x, y) {
+function operation(operator, x, y, angleType) {
     switch (operator) {
         case "+": return x + y;
         case "-": return y - x;
@@ -102,11 +102,11 @@ function operation(operator, x, y) {
         case "log": return Math.log10(x);
 
         // Trigonometric functions
-        case "sin": if (angle === "RAD") return Math.sin(x);
+        case "sin": if (angleType === "RAD") return Math.sin(x);
         else return Math.sin(x * Math.PI / 180);
-        case "cos": if (angle === "RAD") return Math.cos(x);
+        case "cos": if (angleType === "RAD") return Math.cos(x);
         else return Math.cos(x * Math.PI / 180)
-        case "tan": if (angle === "RAD") return Math.tan(x);
+        case "tan": if (angleType === "RAD") return Math.tan(x);
         else return Math.tan(x * Math.PI / 180);
     }
 }
@@ -125,7 +125,7 @@ function cleanUp(list) {
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Transforms the expression from infix notation to postfix notation
-function createRPN(input) {
+function createRPN(input, angleType) {
     let temp = formatExpr(input);
 
     // Input
@@ -197,11 +197,11 @@ function createRPN(input) {
         }
     }
     // The calculation of the result
-    return calculateResult(postfix);
+    return calculateResult(postfix, angleType);
 }
 
 // Calculates the result
-function calculateResult(postfix) {
+function calculateResult(postfix, angleType) {
     if (postfix[0] === "") {
         postfix[0] = "0";
     }
@@ -239,7 +239,7 @@ function calculateResult(postfix) {
                 || actualVal === "√"
                 || actualVal === "log") {
 
-                value = operation(actualVal, x, 0);
+                value = operation(actualVal, x, 0, angleType);
 
                 // Javascript: some known values ​​result in inaccurate but very close values
                 // tan (π / 2) results in: 16331239353195370 which will be interpreted as infinite
@@ -256,7 +256,7 @@ function calculateResult(postfix) {
                 let y = values.pop();
 
                 // The operation between x and y is performed with operator the current value
-                value = operation(actualVal, x, y);
+                value = operation(actualVal, x, y, angleType);
             }
             // The result is placed inside the stack of numeric values
             values.push(value);
@@ -285,18 +285,23 @@ function SingleButton(props) {
     if (props.height !== undefined) {
         height = props.height;
     }
+
+    const { state, dispatch } = useContext(AppContext);
+
     return (
         <input className="singleButton" type="image" src={props.img} width={width} height={height}
-            onClick={() => handleClickEvent()} onDoubleClick={() => { if (props.value === 'c') document.getElementById('input').value = "" }}></input>
+            onClick={() => handleClickEvent()}
+            onDoubleClick={() => { if (props.value === 'c') dispatch({ type: "Erase all" }) }}>
+        </input>
     );
 
     function handleClickEvent() {
         if (props.value === '=') {
-            document.getElementById("output").innerText = createRPN(document.getElementById('input').value);
+            dispatch({ type: "Calculate", payload: createRPN(state.input, state.angleType) })
             return;
         }
         if (props.value === 'c') {
-            document.getElementById("input").value = document.getElementById("input").value.substr(0, document.getElementById("input").value.length - 1);
+            dispatch({ type: "Erase" })
             return;
         }
         if (props.value === '?') {
@@ -307,7 +312,7 @@ function SingleButton(props) {
             alert("Created by Singh Karanbir");
             return;
         }
-        document.getElementById("input").value += props.value;
+        dispatch({ type: "Add val", payload: props.value })
         event.target.blur();
     }
 }
@@ -391,11 +396,11 @@ function ExtraButtons() {
             <SingleButton value="%" img={assets.img.operators.mod} />
             <SingleButton value="π" img={assets.img.numbers.pi} />
 
-            <SingleButton value="sin" img={assets.img.operators.sin} />
-            <SingleButton value="cos" img={assets.img.operators.cos} />
+            <SingleButton value="sin(" img={assets.img.operators.sin} />
+            <SingleButton value="cos(" img={assets.img.operators.cos} />
 
-            <SingleButton value="tan" img={assets.img.operators.tan} />
-            <SingleButton value="log" img={assets.img.operators.log} />
+            <SingleButton value="tan(" img={assets.img.operators.tan} />
+            <SingleButton value="log(" img={assets.img.operators.log} />
         </div>
     );
 }

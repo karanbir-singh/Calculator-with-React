@@ -10,19 +10,34 @@ const rootElement = document.getElementById("root");
 
 export const AppContext = createContext(null);
 
-function myReducer(state, action) {
+function appReducer(state, action) {
   let newState = { ...state };
   switch (action.type) {
+    // Extra
     case "Angle": newState.angleType = action.payload;
       break;
     case "Opener": newState.extraOpenerActive = action.payload;
+      break;
+
+    // Input field
+    case "Add val": newState.input += action.payload;
+      break;
+    case "Erase": newState.input = newState.input.substr(0, newState.input.length - 1);
+      break;
+    case "Erase all": newState.input = "";
+      break;
+
+    // Output field
+    case "Calculate": newState.output = action.payload;
+      break;
   }
   return newState;
 }
 
 function App() {
-  const [state, dispatch] = useReducer(myReducer, {
+  const [state, dispatch] = useReducer(appReducer, {
     input: "",
+    output: "",
 
     angleType: "DEG",
     extraOpenerActive: false

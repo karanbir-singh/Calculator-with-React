@@ -2,20 +2,25 @@
 
 import React, { useState, useReducer, useContext, createContext } from "react";
 import "../styles.css";
+import { AppContext } from '../index.js';
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Equation input
 function Input() {
+  const { state, dispatch } = useContext(AppContext);
+
   return (
-    <input id='input' className="input"></input>
+    <input id='input' className="input" defaultValue={state.input} disabled></input>
   );
 }
 
 //Solution of the equation
 function Output() {
+  const { state, dispatch } = useContext(AppContext);
+
   return (
-    <p id="output" className="output"></p>
+    <p id="output" className="output">{state.output}</p>
   );
 }
 
